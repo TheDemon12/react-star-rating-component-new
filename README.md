@@ -4,8 +4,6 @@
 [![Dependency Status](http://david-dm.org/voronianski/react-star-rating-controlled-component.svg)](http://david-dm.org/voronianski/react-star-rating-controlled-component)
 [![Download Count](http://img.shields.io/npm/dm/react-star-rating-controlled-component.svg?style=flat)](http://www.npmjs.com/package/react-star-rating-controlled-component)
 
-> Tiny [React.js](https://facebook.github.io/react) component for star (or any other *icon based*) ratings.
-
 This is a fork of Dmitri Voronianski's [react-star-rating-component](https://github.com/voronianski/react-star-rating-controlled-component), a *"Tiny [React.js](https://facebook.github.io/react) component for star (or any other *icon based*) ratings."*
 
 This version is updated to be fully controlled, i.e. it does not maintain state internally and just renders its props. This makes it easy to operate with React-Redux. 
