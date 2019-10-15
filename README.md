@@ -8,7 +8,7 @@ This is a fork of Dmitri Voronianski's [react-star-rating-component](https://git
 
 This version is updated to be fully controlled, i.e. it does not maintain state internally and just renders its props. This makes it easy to operate with React-Redux. 
 
-Also, the componentWillMount function has been removed, which will no longer be supported with React 17. And lastly, the packages in package.json have been brought up to date.
+With this change, the componentWillMount function has been removed. componentWillMount will no longer be supported with React 17. And lastly, the packages in package.json have been brought up to date.
 
 ## Install
 
