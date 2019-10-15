@@ -6,7 +6,7 @@
 
 > Tiny [React.js](https://facebook.github.io/react) component for star (or any other *icon based*) ratings.
 
-This is a fork of Dmitri Voronianski's [react-star-rating-component](https://github.com/voronianski/react-star-rating-component), a *"Tiny [React.js](https://facebook.github.io/react) component for star (or any other *icon based*) ratings."*
+This is a fork of Dmitri Voronianski's [react-star-rating-component](https://github.com/voronianski/react-star-rating-controlled-component), a *"Tiny [React.js](https://facebook.github.io/react) component for star (or any other *icon based*) ratings."*
 
 This version is updated to be fully controlled, i.e. it does not maintain state internally and just renders its props. This makes it easy to operate with React-Redux. 
 
@@ -25,7 +25,6 @@ yarn add react-star-rating-controlled-component
 ```
 
 ## [Demo Here](http://networkandsoftware.github.io/react-star-rating-controlled-component/example)
-
 
 
 ## Props
@@ -53,7 +52,7 @@ yarn add react-star-rating-controlled-component
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StarRatingComponent from 'react-star-rating-component';
+import StarRatingComponent from 'react-star-rating-controlled-component';
 
 class App extends React.Component {
   constructor() {
