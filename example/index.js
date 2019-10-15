@@ -15,17 +15,20 @@ class App extends React.Component {
     };
   }
 
-  onStarClick(nextValue, prevValue, name) {
+  onStarClick(nextValue, name) {
+    const prevValue = this.state.rating
     console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
     this.setState({rating: nextValue});
   }
 
-  onStarClickCustomIcon(nextValue, prevValue, name) {
+  onStarClickCustomIcon(nextValue, name) {
+    const prevValue = this.state.rating_custom_icon
     console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
     this.setState({rating_custom_icon: nextValue});
   }
 
-  onStarClickHalfStar(nextValue, prevValue, name, e) {
+  onStarClickHalfStar(nextValue, name, e) {
+    const prevValue = this.state.rating_half_star
     const xPos = (e.pageX - e.currentTarget.getBoundingClientRect().left) / e.currentTarget.offsetWidth;
 
     if (xPos <= 0.5) {
@@ -37,7 +40,8 @@ class App extends React.Component {
     this.setState({rating_half_star: nextValue});
   }
 
-  onStarClickEmptyInitial(nextValue, prevValue, name) {
+  onStarClickEmptyInitial(nextValue, name) {
+    const prevValue = this.state.rating_empty_initial
     console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
     this.setState({rating_empty_initial: nextValue});
   }
@@ -47,12 +51,7 @@ class App extends React.Component {
       <div style={{marginLeft: 20}}>
         <h2>ReactStarRatingComponent</h2>
 
-        <h3>Editable:</h3>
-        <div style={{fontSize: 24}}>
-          <StarRatingComponent name="app1" />
-        </div>
-
-        <h3>Editable with handlers (Rating from state is {this.state.rating}):</h3>
+        <h3>Editable  (Rating from state is {this.state.rating}):</h3>
         <div style={{fontSize: 26}}>
           <StarRatingComponent
             name="app2"
