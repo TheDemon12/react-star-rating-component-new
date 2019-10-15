@@ -14,7 +14,7 @@ if (env === 'production') {
   pluginsList.push(
     new UglifyJsPlugin({
       uglifyOptions: {
-        compress: { warnings: false },
+        warnings: false,
         output: { comments: false }
       }
     })
