@@ -45,49 +45,6 @@ yarn add react-star-rating-controlled-component
 
 ## Examples
 
-### Editable 
-
-```javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
-import StarRatingComponent from 'react-star-rating-controlled-component';
-
-class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      rating: 1
-    };
-  }
-
-  onStarClick(nextValue, prevValue, name) {
-    this.setState({rating: nextValue});
-  }
-
-  render() {
-    const { rating } = this.state;
-    
-    return (                
-      <div>
-        <h2>Rating from state: {this.state.rating}</h2>
-        <StarRatingComponent 
-          name="rate1" 
-          starCount={10}
-          value={rating}
-          onStarClick={this.onStarClick.bind(this)}
-        />
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(
-  <App />, 
-  document.getElementById('app')
-);
-```
-
 ### React-Redux
 
 ```javascript
@@ -132,6 +89,50 @@ ReactDOM.render(
   , document.getElementById('redux-app')
 )
 ```
+
+### React only
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import StarRatingComponent from 'react-star-rating-controlled-component';
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      rating: 1
+    };
+  }
+
+  onStarClick(nextValue, prevValue, name) {
+    this.setState({rating: nextValue});
+  }
+
+  render() {
+    const { rating } = this.state;
+    
+    return (                
+      <div>
+        <h2>Rating from state: {this.state.rating}</h2>
+        <StarRatingComponent 
+          name="rate1" 
+          starCount={10}
+          value={rating}
+          onStarClick={this.onStarClick.bind(this)}
+        />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <App />, 
+  document.getElementById('app')
+);
+```
+
 
 More in [examples folder](https://github.com/networkandsoftware/react-star-rating-controlled-component/tree/master/example).
 
