@@ -5,10 +5,11 @@ import cx from 'classnames';
 class StarRatingComponent extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
-    value: PropTypes.number,
+    value: PropTypes.number.isRequired,
     editing: PropTypes.bool,
     starCount: PropTypes.number,
     starColor: PropTypes.string,
+    onChange: PropTypes.func,
     onStarClick: PropTypes.func,
     onStarHover: PropTypes.func,
     onStarHoverOut: PropTypes.func,
@@ -23,38 +24,7 @@ class StarRatingComponent extends Component {
     emptyStarColor: '#333'
   };
 
-  constructor(props) {
-    super();
-
-    this.state = {
-      value: props.value
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { value } = nextProps;
-
-    if (value != null && (value !== this.state.value)) {
-      this.setState({ value });
-    }
-  }
-
-  onChange(inputValue) {
-    const { editing, value } = this.props;
-
-    if (!editing) {
-      return;
-    }
-
-    // do not update internal state based on input value if prop passed
-    if (value != null) {
-      return;
-    }
-
-    this.setState({value: inputValue});
-  }
-
-  onStarClick(index, value, name, e) {
+  onStarClick(index, name, e) {
     e.stopPropagation();
 
     const { onStarClick, editing } = this.props;
@@ -62,11 +32,10 @@ class StarRatingComponent extends Component {
     if (!editing) {
       return;
     }
-
-    onStarClick && onStarClick(index, value, name, e);
+    onStarClick && onStarClick(index, name, e);
   }
 
-  onStarHover(index, value, name, e) {
+  onStarHover(index, name, e) {
     e.stopPropagation();
 
     const { onStarHover, editing } = this.props;
@@ -75,10 +44,10 @@ class StarRatingComponent extends Component {
       return;
     }
 
-    onStarHover && onStarHover(index, value, name, e);
+    onStarHover && onStarHover(index, name, e);
   }
 
-  onStarHoverOut(index, value, name, e) {
+  onStarHoverOut(index, name, e) {
     e.stopPropagation();
 
     const { onStarHoverOut, editing } = this.props;
@@ -87,7 +56,7 @@ class StarRatingComponent extends Component {
       return;
     }
 
-    onStarHoverOut && onStarHoverOut(index, value, name, e);
+    onStarHoverOut && onStarHoverOut(index, name, e);
   }
 
   renderStars() {
@@ -96,54 +65,35 @@ class StarRatingComponent extends Component {
       starCount,
       starColor,
       emptyStarColor,
-      editing
+      editing,
+      value
     } = this.props;
-    const { value } = this.state;
 
     const starStyles = (i, value) => ({
       float: 'right',
       cursor: editing ? 'pointer' : 'default',
       color: value >= i ? starColor : emptyStarColor
     });
-    const radioStyles = {
-      display: 'none',
-      position: 'absolute',
-      marginLeft: -9999
-    };
 
     // populate stars
     let starNodes = [];
 
     for (let i = starCount; i > 0; i--) {
       const id = `${name}_${i}`;
-      const starNodeInput = (
-        <input
-          key={`input_${id}`}
-          style={radioStyles}
-          className="dv-star-rating-input"
-          type="radio"
-          name={name}
-          id={id}
-          value={i}
-          checked={value === i}
-          onChange={this.onChange.bind(this, i, name)}
-        />
-      );
       const starNodeLabel = (
         <label
           key={`label_${id}`}
           style={starStyles(i, value)}
           className={'dv-star-rating-star ' + (value >= i ? 'dv-star-rating-full-star' : 'dv-star-rating-empty-star')}
           htmlFor={id}
-          onClick={e => this.onStarClick(i, value, name, e)}
-          onMouseOver={e => this.onStarHover(i, value, name, e)}
-          onMouseLeave={e => this.onStarHoverOut(i, value, name, e)}
+          onClick={e => this.onStarClick(i, name, e)}
+          onMouseOver={e => this.onStarHover(i, name, e)}
+          onMouseLeave={e => this.onStarHoverOut(i, name, e)}
         >
           {this.renderIcon(i, value, name, id)}
         </label>
       );
 
-      starNodes.push(starNodeInput);
       starNodes.push(starNodeLabel);
     }
 
