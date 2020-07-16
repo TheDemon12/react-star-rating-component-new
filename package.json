@@ -1,6 +1,6 @@
 {
   "name": "react-star-rating-component-new",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "React component for star (or any other icon based) ratings",
   "main": "index.js",
   "scripts": {

@@ -1,6 +1,6 @@
 # react-star-rating-component-new
 
-[![npm version](https://badge.fury.io/js/react-star-rating-controlled-component.svg)](https://www.npmjs.com/package/react-star-rating-component-new)
+[![npm version](https://badge.fury.io/js/react-star-rating-component-new.svg)](https://www.npmjs.com/package/react-star-rating-component-new)
 [![Download Count](http://img.shields.io/npm/dm/react-star-rating-component-new.svg?style=flat)](http://www.npmjs.com/package/react-star-rating-component-new)
 
 This is a fork of Dmitri Voronianski's [react-star-rating-component](https://github.com/voronianski/react-star-rating-component), a *"Tiny [React.js](https://facebook.github.io/react) component for star (or any other *icon based*) ratings."*
