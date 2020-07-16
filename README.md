@@ -61,7 +61,10 @@ yarn add react-star-rating-component-new
 ```javascript
 import React from "react";
 import ReactDOM from "react-dom";
-import StarRatingComponent from "react-star-rating-controlled-component";
+import StarRatingComponent from "react-star-rating-component-new";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
 
 class App extends React.Component {
   constructor() {
@@ -88,19 +91,19 @@ class App extends React.Component {
           renderStarIcon={() => (
             <FontAwesomeIcon
               icon={faStar}
-              style={{ color: "rgb(253, 186, 73)", ...iconStyle }}
+              style={{ color: "rgb(253, 186, 73)" }}
             />
           )}
           renderStarIconHalf={() => (
             <FontAwesomeIcon
               icon={faStarHalfAlt}
-              style={{ color: "rgb(253, 186, 73)", ...iconStyle }}
+              style={{ color: "rgb(253, 186, 73)" }}
             />
           )}
           renderEmptyStarIcon={() => (
             <FontAwesomeIcon
               icon={faStarEmpty}
-              style={{ color: "rgb(253, 186, 73)", ...iconStyle }}
+              style={{ color: "rgb(253, 186, 73)" }}
             />
           )}
           starCount={5}

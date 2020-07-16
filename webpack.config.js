@@ -7,8 +7,8 @@ const webpackUMDExternal = require('webpack-umd-external');
 
 const pluginsList = [];
 const outputFileName = env === 'production' ?
-  'react-star-rating-controlled-component.min.js' :
-  'react-star-rating-controlled-component.js';
+  'react-star-rating-component-new.min.js' :
+  'react-star-rating-component-new.js';
 
 if (env === 'production') {
   pluginsList.push(
