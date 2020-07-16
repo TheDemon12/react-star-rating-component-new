@@ -3,133 +3,150 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 class StarRatingComponent extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired,
-    editing: PropTypes.bool,
-    starCount: PropTypes.number,
-    starColor: PropTypes.string,
-    onChange: PropTypes.func,
-    onStarClick: PropTypes.func,
-    onStarHover: PropTypes.func,
-    onStarHoverOut: PropTypes.func,
-    renderStarIcon: PropTypes.func,
-    renderStarIconHalf: PropTypes.func
-  };
+	static propTypes = {
+		name: PropTypes.string.isRequired,
+		value: PropTypes.number.isRequired,
+		editing: PropTypes.bool,
+		starCount: PropTypes.number,
+		starColor: PropTypes.string,
+		onChange: PropTypes.func,
+		onStarClick: PropTypes.func,
+		onStarHover: PropTypes.func,
+		onStarHoverOut: PropTypes.func,
+		renderStarIcon: PropTypes.func,
+		renderStarIconHalf: PropTypes.func,
+		renderEmptyStarIcon: PropTypes.func,
+	};
 
-  static defaultProps = {
-    starCount: 5,
-    editing: true,
-    starColor: '#ffb400',
-    emptyStarColor: '#333'
-  };
+	static defaultProps = {
+		starCount: 5,
+		editing: true,
+		starColor: '#ffb400',
+		emptyStarColor: '#333',
+	};
 
-  onStarClick(index, name, e) {
-    e.stopPropagation();
+	onStarClick(index, name, e) {
+		e.stopPropagation();
 
-    const { onStarClick, editing } = this.props;
+		const { onStarClick, editing } = this.props;
 
-    if (!editing) {
-      return;
-    }
-    onStarClick && onStarClick(index, name, e);
-  }
+		if (!editing) {
+			return;
+		}
+		onStarClick && onStarClick(index, name, e);
+	}
 
-  onStarHover(index, name, e) {
-    e.stopPropagation();
+	onStarHover(index, name, e) {
+		e.stopPropagation();
 
-    const { onStarHover, editing } = this.props;
+		const { onStarHover, editing } = this.props;
 
-    if (!editing) {
-      return;
-    }
+		if (!editing) {
+			return;
+		}
 
-    onStarHover && onStarHover(index, name, e);
-  }
+		onStarHover && onStarHover(index, name, e);
+	}
 
-  onStarHoverOut(index, name, e) {
-    e.stopPropagation();
+	onStarHoverOut(index, name, e) {
+		e.stopPropagation();
 
-    const { onStarHoverOut, editing } = this.props;
+		const { onStarHoverOut, editing } = this.props;
 
-    if (!editing) {
-      return;
-    }
+		if (!editing) {
+			return;
+		}
 
-    onStarHoverOut && onStarHoverOut(index, name, e);
-  }
+		onStarHoverOut && onStarHoverOut(index, name, e);
+	}
 
-  renderStars() {
-    const {
-      name,
-      starCount,
-      starColor,
-      emptyStarColor,
-      editing,
-      value
-    } = this.props;
+	renderStars() {
+		const { name, starCount, starColor, editing, value } = this.props;
 
-    const starStyles = (i, value) => ({
-      float: 'right',
-      cursor: editing ? 'pointer' : 'default',
-      color: value >= i ? starColor : emptyStarColor
-    });
+		const starStyles = (i, value) => ({
+			float: 'right',
+			cursor: editing ? 'pointer' : 'default',
 
-    // populate stars
-    let starNodes = [];
+			color: starColor,
+		});
 
-    for (let i = starCount; i > 0; i--) {
-      const id = `${name}_${i}`;
-      const starNodeLabel = (
-        <label
-          key={`label_${id}`}
-          style={starStyles(i, value)}
-          className={'dv-star-rating-star ' + (value >= i ? 'dv-star-rating-full-star' : 'dv-star-rating-empty-star')}
-          htmlFor={id}
-          onClick={e => this.onStarClick(i, name, e)}
-          onMouseOver={e => this.onStarHover(i, name, e)}
-          onMouseLeave={e => this.onStarHoverOut(i, name, e)}
-        >
-          {this.renderIcon(i, value, name, id)}
-        </label>
-      );
+		// populate stars
+		let starNodes = [];
 
-      starNodes.push(starNodeLabel);
-    }
+		for (let i = starCount; i > 0; i--) {
+			const id = `${name}_${i}`;
+			const starNodeLabel = (
+				<label
+					key={`label_${id}`}
+					style={starStyles(i, value)}
+					className={
+						'dv-star-rating-star ' +
+						(value >= i
+							? 'dv-star-rating-full-star'
+							: 'dv-star-rating-empty-star')
+					}
+					htmlFor={id}
+					onClick={e => this.onStarClick(i, name, e)}
+					onMouseOver={e => this.onStarHover(i, name, e)}
+					onMouseLeave={e => this.onStarHoverOut(i, name, e)}>
+					{this.renderIcon(i, value, name, id)}
+				</label>
+			);
 
-    return starNodes.length ? starNodes : null;
-  }
+			starNodes.push(starNodeLabel);
+		}
 
-  renderIcon(index, value, name, id) {
-    const { renderStarIcon, renderStarIconHalf } = this.props;
+		return starNodes.length ? starNodes : null;
+	}
 
-    if (
-      typeof renderStarIconHalf === 'function' &&
-      Math.ceil(value) === index &&
-      value % 1 !== 0
-    ) {
-      return renderStarIconHalf(index, value, name, id);
-    }
+	renderIcon(index, value, name, id) {
+		const {
+			renderStarIcon,
+			renderStarIconHalf,
+			renderEmptyStarIcon,
+		} = this.props;
 
-    if (typeof renderStarIcon === 'function') {
-      return renderStarIcon(index, value, name, id);
-    }
+		if (
+			typeof renderStarIconHalf === 'function' &&
+			Math.ceil(value) === index &&
+			value % 1 !== 0
+		) {
+			return renderStarIconHalf(index, value, name, id);
+		}
 
-    return <i key={`icon_${id}`} style={{fontStyle: 'normal'}}>&#9733;</i>;
-  }
+		if (typeof renderStarIcon === 'function' && index > value) {
+			return renderEmptyStarIcon(index, value, name, id);
+		}
 
-  render() {
-    const { editing, className } = this.props;
-    const classes = cx('dv-star-rating', {
-      'dv-star-rating-non-editable': !editing
-    }, className);
+		if (typeof renderStarIcon === 'function') {
+			return renderStarIcon(index, value, name, id);
+		}
 
-    return (
-      <div style={{display: 'inline-block', position: 'relative'}} className={classes}>
-        {this.renderStars()}
-      </div>
-    );
-  }
+		return (
+			<i key={`icon_${id}`} style={{ fontStyle: 'normal' }}>
+				&#9733;
+			</i>
+		);
+	}
+
+	render() {
+		const { editing, className } = this.props;
+		const classes = cx(
+			'dv-star-rating',
+			{
+				'dv-star-rating-non-editable': !editing,
+			},
+			className
+		);
+
+		return (
+			<div
+				style={{ display: 'inline-block', position: 'relative' }}
+				className={classes}>
+				{this.renderStars()}
+			</div>
+		);
+	}
 }
 
 export default StarRatingComponent;
