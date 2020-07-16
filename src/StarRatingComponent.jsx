@@ -8,7 +8,6 @@ class StarRatingComponent extends Component {
 		value: PropTypes.number.isRequired,
 		editing: PropTypes.bool,
 		starCount: PropTypes.number,
-		starColor: PropTypes.string,
 		onChange: PropTypes.func,
 		onStarClick: PropTypes.func,
 		onStarHover: PropTypes.func,
@@ -21,8 +20,6 @@ class StarRatingComponent extends Component {
 	static defaultProps = {
 		starCount: 5,
 		editing: true,
-		starColor: '#ffb400',
-		emptyStarColor: '#333',
 	};
 
 	onStarClick(index, name, e) {
@@ -61,13 +58,11 @@ class StarRatingComponent extends Component {
 	}
 
 	renderStars() {
-		const { name, starCount, starColor, editing, value } = this.props;
+		const { name, starCount, editing, value } = this.props;
 
 		const starStyles = (i, value) => ({
 			float: 'right',
 			cursor: editing ? 'pointer' : 'default',
-
-			color: starColor,
 		});
 
 		// populate stars
